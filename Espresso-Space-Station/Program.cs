@@ -18,7 +18,7 @@ namespace Espresso_Space_Station
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new EspressoSpaceStation())
                 game.Run();
         }
     }
