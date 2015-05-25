@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 
 namespace Espresso_Space_Station
 {
@@ -12,6 +16,10 @@ namespace Espresso_Space_Station
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
+        //TODO: move these to the appropriate files
+        public static Dictionary<string, Texture2D> sprites = new Dictionary<string,Texture2D>();
+        public static Dictionary<string, Texture2D> backgrounds = new Dictionary<string, Texture2D>();
         public EspressoSpaceStation()
             : base()
         {
@@ -40,6 +48,28 @@ namespace Espresso_Space_Station
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
+
+            //Load sprites
+            DirectoryInfo dir = new DirectoryInfo(Content.RootDirectory + @"\Sprites");
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException();
+
+            Debug.WriteLine("Starting files");
+            FileInfo[] files = dir.GetFiles("*.xnb");
+            string str = "";
+            foreach (FileInfo file in files)
+            {
+                str = str + ", " + file.Name;
+                string key = Path.GetFileNameWithoutExtension(file.Name);
+                Debug.WriteLine(key);
+                sprites[key] = Content.Load<Texture2D>(@"Sprites\" + key);
+            }
+            Debug.WriteLine(str);
+
+            //Load fonts
+            Text.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
