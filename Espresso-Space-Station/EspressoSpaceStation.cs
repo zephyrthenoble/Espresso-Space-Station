@@ -15,8 +15,9 @@ namespace Espresso_Space_Station
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-
+        public Text debug_text;
+        public GameState currentState;
+        public GameState mainGame;
         //TODO: move these to the appropriate files
         public static Dictionary<string, Texture2D> sprites = new Dictionary<string,Texture2D>();
         public static Dictionary<string, Texture2D> backgrounds = new Dictionary<string, Texture2D>();
@@ -38,6 +39,9 @@ namespace Espresso_Space_Station
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            mainGame = new MainGame();
+            currentState = mainGame;
+            debug_text = new Text("Debug", new Vector2(50, 50));
         }
 
         /// <summary>
@@ -94,7 +98,7 @@ namespace Espresso_Space_Station
                 Exit();
 
             // TODO: Add your update logic here
-
+            currentState = currentState.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -107,7 +111,10 @@ namespace Espresso_Space_Station
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            debug_text.Draw(spriteBatch);
+            currentState.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

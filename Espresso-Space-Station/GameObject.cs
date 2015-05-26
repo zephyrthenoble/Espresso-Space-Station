@@ -20,10 +20,27 @@ namespace Espresso_Space_Station
 
 
 
-        public GameObject(Vector2 position)
+        public GameObject(Texture2D sprite, Vector2 position = default(Vector2), Rectangle frame = default(Rectangle), Color tint = default(Color))
         {
-            ;
+            this.sprite = sprite;
+            if(position == default(Vector2))
+            {
+                position = new Vector2(0, 0);
+            }
+            if(frame == default(Rectangle))
+            {
+                frame = sprite.Bounds;
+            }
+            this.frame = frame;
+            this.bounds = new Rectangle((int)position.X, (int)position.Y, (int)frame.Width, (int)frame.Height);
+
+            if(tint == default(Color))
+            {
+                tint = Color.White;
+            }
+            this.tint = tint;
         }
+
         public void Draw(SpriteBatch s, Vector2 pos = default(Vector2), Color c = default(Color))
         {
             s.Draw(sprite, frame, bounds, tint);
