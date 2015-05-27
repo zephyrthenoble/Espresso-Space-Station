@@ -43,7 +43,7 @@ namespace Espresso_Space_Station
 
         public void Draw(SpriteBatch s, Vector2 pos = default(Vector2), Color c = default(Color))
         {
-            s.Draw(sprite, frame, bounds, tint);
+            s.Draw(sprite, bounds, frame, tint);
         }
     }
 }
