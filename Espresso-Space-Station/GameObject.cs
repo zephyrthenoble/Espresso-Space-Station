@@ -18,6 +18,11 @@ namespace Espresso_Space_Station
         //The tinting of the sprite when drawn
         public Color tint;
 
+        public static virtual string SpriteText { 
+            get { return "test"; }
+        }
+        
+        
 
 
         public GameObject(Texture2D sprite, Vector2 position = default(Vector2), Rectangle frame = default(Rectangle), Color tint = default(Color))
@@ -41,9 +46,13 @@ namespace Espresso_Space_Station
             this.tint = tint;
         }
 
-        public void Draw(SpriteBatch s, Vector2 pos = default(Vector2), Color c = default(Color))
+        public virtual void Draw(SpriteBatch s, Vector2 pos = default(Vector2), Color c = default(Color))
         {
             s.Draw(sprite, bounds, frame, tint);
+        }
+        public virtual void Update(GameTime t)
+        {
+
         }
     }
 }

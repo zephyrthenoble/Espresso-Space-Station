@@ -38,12 +38,15 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entity.cs" />
     <Compile Include="EspressoSpaceStation.cs" />
+    <Compile Include="Floor.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Space.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Tile.cs" />
   </ItemGroup>
